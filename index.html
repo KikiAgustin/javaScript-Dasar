@@ -29,8 +29,8 @@
                         <h5 class="card-title text-center mb-5">Aplikasi Todo List </h5>
 
                         <div class="row">
-                            <div class="col-sm-6 mb-5 ">
-                                <form action="">
+                            <div class="col-sm-6 mb-5  ">
+                                <form id="form-list" action="">
                                     <div class="mb-3">
                                         <label for="tulis-list" class="form-label fw-bold ">Mau Ngerjain Apa
                                             Hari
@@ -55,28 +55,13 @@
                             </div>
                             <div class="col-sm-6">
                                 <p class="fw-bold">Kegiatan Hari Ini</p>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <i style="color:#2570e8" class="bi bi-check-circle-fill"></i>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        <a style="margin-top: -20px;"
-                                            class="d-flex justify-content-end text-decoration-none mb-2" href=""><span
-                                                class="badge bg-danger">hapus</span></a>
-                                    </li>
+                                <ul class="list-group" id="list-kegiatan">
                                     <li class="list-group-item">
                                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                         <a style="margin-top: -20px;"
-                                            class="d-flex justify-content-end text-decoration-none mb-2" href=""><span
+                                            class="d-flex justify-content-end text-decoration-none mb-2" href="#"><span
                                                 class="badge bg-danger">hapus</span></a>
-                                        <a class="d-flex justify-content-end text-decoration-none" href=""><span
-                                                class="badge bg-primary">selesai</span></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        <a style="margin-top: -20px;"
-                                            class="d-flex justify-content-end text-decoration-none mb-2" href=""><span
-                                                class="badge bg-danger">hapus</span></a>
-                                        <a class="d-flex justify-content-end text-decoration-none" href=""><span
+                                        <a class="d-flex justify-content-end text-decoration-none" href="#"><span
                                                 class="badge bg-primary">selesai</span></a>
                                     </li>
                                     <li class="list-group-item">
@@ -99,6 +84,7 @@
         </div>
     </div>
 
+    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
         integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
         crossorigin="anonymous"></script>
