@@ -4,10 +4,66 @@ const listKegiatan = document.querySelector("#list-kegiatan");
 const cariList = document.querySelector("#cari-list");
 const hapusSemuaList = document.querySelector("#hapus-semua-list");
 
+
+document.addEventListener("DOMContentLoaded", getTodos);
 formList.addEventListener("submit", createList);
 listKegiatan.addEventListener("click", deleteList);
 cariList.addEventListener("keyup", pencarianList);
 hapusSemuaList.addEventListener("click", hapusList);
+
+
+function getTodos() {
+    if (localStorage.getItem("todos") == null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+
+    todos.forEach((todo) => {
+        // Memebuat Elemetn Li
+        const li = document.createElement("li");
+        if (todo.status == 0) {
+
+            li.className = "list-group-item todo-item";
+        } else {
+            li.className = "list-group-item selesai";
+        }
+        li.appendChild(document.createTextNode(todo.isi));
+
+        // Membuat Element Delete
+        const deleteList = document.createElement("a");
+        deleteList.style = "margin-top: -20px;";
+        deleteList.className = "d-flex justify-content-end text-decoration-none mb-2 ";
+        deleteList.href = "#";
+
+        const spanDelete = document.createElement("span");
+        spanDelete.className = "badge bg-danger delete-list";
+        spanDelete.innerHTML = "delete";
+
+        deleteList.appendChild(spanDelete);
+        li.appendChild(deleteList);
+
+        if (todo.status == 0) {
+            // Menambahkan Element Edit
+            const editList = document.createElement("a");
+            editList.className = "d-flex justify-content-end text-decoration-none ";
+            editList.href = "#";
+
+            const spanEdit = document.createElement("span");
+            spanEdit.className = "badge bg-primary selesai-list";
+            spanEdit.innerHTML = "selesai";
+
+            editList.appendChild(spanEdit)
+            li.appendChild(editList);
+        } else {
+            ""
+        }
+
+
+        // Menambahkan elemen Li ke UL
+        listKegiatan.appendChild(li);
+    })
+}
 
 function createList(e) {
     e.preventDefault();
@@ -115,8 +171,20 @@ function addTodoLocalStorage(todoInputValue) {
 
     let todos = getElementFromLocalStorage();
 
-    todos.push(todoInputValue);
+    todos.push({
+        status: "0",
+        isi: todoInputValue
+    });
 
     localStorage.setItem("todos", JSON.stringify(todos));
 
 }
+// function addTodoLocalStorage(todoInputValue) {
+
+//     let todos = getElementFromLocalStorage();
+
+//     todos.push(todoInputValue);
+
+//     localStorage.setItem("todos", JSON.stringify(todos));
+
+// }
