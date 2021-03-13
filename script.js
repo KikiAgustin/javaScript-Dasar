@@ -172,7 +172,7 @@ function addTodoLocalStorage(todoInputValue) {
     let todos = getElementFromLocalStorage();
 
     todos.push({
-        status: "0",
+        status: "1",
         isi: todoInputValue
     });
 
