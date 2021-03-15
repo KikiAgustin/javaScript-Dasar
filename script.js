@@ -121,6 +121,7 @@ function deleteList(e) {
             const element = e.target.parentElement;
             const deleteElement = element.parentElement;
             deleteElement.remove();
+            deleteTodoLocalStorage(deleteElement);
         }
 
     } else if (e.target.classList.contains("selesai-list")) {
@@ -129,8 +130,38 @@ function deleteList(e) {
             const selesaiElement = element.parentElement;
             selesaiElement.className = "list-group-item selesai"
             element.remove();
+            selesaiTodoLocalStorage(selesaiElement);
         }
     }
+}
+
+function deleteTodoLocalStorage(deleteElemet) {
+    const todos = getElementFromLocalStorage();
+
+    todos.forEach((todo, index) => {
+        if (deleteElemet.firstChild.textContent === todo.isi) {
+            todos.splice(index, 1)
+        }
+    })
+
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function selesaiTodoLocalStorage(selesaiElement) {
+
+    const todos = getElementFromLocalStorage();
+
+    todos.forEach((todo, index) => {
+        if (selesaiElement.firstChild.textContent === todo.isi) {
+            todos.splice(index, 1, {
+                status: "1",
+                isi: selesaiElement.firstChild.textContent
+            })
+        }
+    })
+
+    localStorage.setItem("todos", JSON.stringify(todos));
+
 }
 
 function pencarianList(e) {
@@ -150,7 +181,14 @@ function pencarianList(e) {
 }
 
 function hapusList() {
-    listKegiatan.innerHTML = "";
+    if (confirm("Anda yakin mau menghapus semua list?")) {
+        listKegiatan.innerHTML = "";
+        clearTodosLocasStrorage();
+    }
+}
+
+function clearTodosLocasStrorage() {
+    localStorage.clear();
 }
 
 function getElementFromLocalStorage() {
@@ -172,7 +210,7 @@ function addTodoLocalStorage(todoInputValue) {
     let todos = getElementFromLocalStorage();
 
     todos.push({
-        status: "1",
+        status: "0",
         isi: todoInputValue
     });
 
