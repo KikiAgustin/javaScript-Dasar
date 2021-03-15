@@ -128,7 +128,7 @@ function deleteList(e) {
         if (confirm("Anda yakin list ini sudah selesai?")) {
             const element = e.target.parentElement;
             const selesaiElement = element.parentElement;
-            selesaiElement.className = "list-group-item selesai"
+            selesaiElement.className = "list-group-item selesai todo-item"
             element.remove();
             selesaiTodoLocalStorage(selesaiElement);
         }
